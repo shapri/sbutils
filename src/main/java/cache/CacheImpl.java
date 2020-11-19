@@ -44,8 +44,7 @@ public class CacheImpl<K, V> implements Cache<K, V> {
             future = cache.putIfAbsent(key, task);
 
             if(future == null) {
-                future = cache.put(key, task);
-                LOG.debug("future task cached for {}", key);
+                future = task;
                 task.run();
                 LOG.debug("future task run for {}", key);
             }
